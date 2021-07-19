@@ -358,5 +358,39 @@ public class AlgorithmsAndStuff {
         }
         throw new IllegalArgumentException("No two sum solution");
     }
+    
+    
+    
+    /**
+    * Checks whether there is a stream of numbers in a privided
+    * @param str. Example: "1233344" has a number stream("333")
+    *                      "12344335588888" hasn't
+    */
+        public static boolean NumberStream(String str) {
+        String expectedNum = str.substring(0, 1);
+        int expectedLength = Integer.parseInt(expectedNum);
+        int counter = 0;
+        str += "0";
+        String[] strArr = str.split("");
+        for (int i = 0; i < strArr.length - 1; i++) {
+            String num = strArr[i];
+            if (num.equals(expectedNum)) {
+                counter++;
+                String nextEl = strArr[i + 1];
+                System.out.println(nextEl);
+                if (expectedLength == counter && !nextEl.equals(num)) {
+                    return true;
+                }
+                continue;
+            } else {
+                counter = 1;
+                expectedLength = Integer.parseInt(num);
+                expectedNum = num;
+            }
+        }
+        return false;
+    }
+    
+    
 }
 
